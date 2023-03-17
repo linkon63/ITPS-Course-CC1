@@ -1,0 +1,25 @@
+
+Bootstrap => 
+    CSS => Cascading Style sheet = > CSS Style
+
+CSS hard ?
+    Simple => Bootstrap...
+
+    CSS Framework
+    1. Bootstrap
+    2.Taildwind CSS
+
+
+Background color in CSS
+
+1. Stylesheet link?
+2. Class 
+3. class catch and give instruction
+
+4.set instruction 
+    Background-color: red;
+5. end
+
+Bootstrap css
+bg-red
+

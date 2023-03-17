@@ -1,0 +1,91 @@
+body {
+    background-color: rgb(251, 251, 251);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Bebas Neue', cursive;
+}
+
+.mainSection {
+    width: 80%;
+}
+
+.headingText {
+    font-family: 'Bebas Neue', cursive;
+    color: darkgray;
+}
+
+.cardSection {
+    width: 100%;
+    display: flex;
+    /* grid-template-columns: repeat(3,1fr); */
+    justify-content: space-around;
+}
+
+.card {
+    border: 1px solid gray;
+    border-radius: 15px;
+    padding: 7px;
+    width: 25%;
+    box-shadow: 2px 2px 25px grey;
+}
+
+.card>.cardDiv {
+    background-color: rgb(255, 255, 255);
+}
+
+.card>.cardDiv>.cardImage {
+    text-align: center;
+}
+
+.card>.cardDiv>.cardImage>img {
+    width: 300px;
+    height: 310px;
+    border-radius: 15px;
+    background-color: #f5f5f5;
+}
+
+.cardDesc>h1 {
+    color: darkgray;
+    font-size: 19px;
+}
+
+.cardDesc>p {
+    color: rgb(0, 0, 0);
+    font-size: 15px;
+}
+
+.cardDesc>.priceSection {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cardDesc>.priceSection>h2 {
+    color: #76C27E;
+}
+
+
+.cardDesc>.priceSection>button {
+    display: flex;
+    justify-content: center;
+    color: rgb(247, 247, 247);
+    width: 100px;
+    height: 40px;
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    background-color: #2A1E59;
+    padding-top: 8px;
+}
+
+.cardDesc>.priceSection>button>img {
+    width: 26px;
+    height: 26px;
+    /* margin-top: 5px; */
+}
+
+.cardDesc>.priceSection>button>span {
+    padding-top: 5px;
+}

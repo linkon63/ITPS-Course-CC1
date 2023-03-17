@@ -1,0 +1,7 @@
+hello text file you will add in github
+
+I updated this file and now it is in local in future
+
+git add .
+git commit -m"message"
+git push

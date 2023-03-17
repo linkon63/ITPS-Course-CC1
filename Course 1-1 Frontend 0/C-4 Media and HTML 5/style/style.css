@@ -1,0 +1,48 @@
+body{
+    margin: 0%;
+    padding: 0%;
+}
+.navbar{
+    background-color: rgb(5, 5, 5);
+    color: white;
+    font-size: xx-small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: right;
+    padding: 10px;
+}
+
+.navbar a{
+    text-decoration: none;
+    /* border: 1px solid tomato; */
+    color: white;
+    font-weight: bold;
+    /* padding right this is not appropriate way */
+    padding-right: 50px; 
+}
+
+.imageSection{
+    /* border: 1px solid red; */
+    text-align: center;
+    background-color: azure;
+}
+
+.imageSection img {
+    width: 300px;
+    height: 300px;
+}
+
+.box{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid rgb(0, 0, 0); */
+    text-align: center;
+}
+
+.box h1{
+    /* css unit study */
+    /* margin-right: 20px; */
+    /* border: 2px solid rgb(176, 245, 16); */
+    height: 200px;
+    width: 20%;
+    background-color: tomato;
+}

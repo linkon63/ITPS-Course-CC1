@@ -1,0 +1,74 @@
+body {
+    background-color: aqua;
+}
+
+.card-sec {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.box {
+    /* width: 80%; */
+    border: 2px dashed red;
+    height: 220px;
+}
+
+.card-1 {
+    background-color: brown;
+}
+
+.card-2 {
+    background-color: rgb(42, 226, 5);
+}
+
+.card-3 {
+    background-color: rgb(45, 11, 233);
+}
+
+.card-4 {
+    background-color: rgb(214, 16, 16);
+}
+
+
+@media screen and (max-width: 900px) {
+    body {
+        background-color: rgb(248, 232, 9);
+    }
+
+    .card-sec {
+        display: grid;
+        /* Best way */
+        grid-template-columns: repeat(3, 1fr);
+        /* grid-template-columns: 100% 100%; */
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+    body {
+        background-color: rgb(32, 7, 255);
+    }
+
+    .card-sec {
+        display: grid;
+        /* Best way */
+        grid-template-columns: repeat(2, 1fr);
+        /* grid-template-columns: 100% 100%; */
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+    body {
+        background-color: rgb(255, 20, 20);
+    }
+
+    .card-sec {
+        display: grid;
+        grid-template-columns: 100%;
+        /* grid-template-columns: repeat(1, 1fr); */
+    }
+
+}

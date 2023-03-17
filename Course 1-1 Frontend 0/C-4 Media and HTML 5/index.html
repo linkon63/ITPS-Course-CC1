@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media</title>
+</head>
+
+<body>
+    <center>
+        <h1>This is media content</h1>
+
+        <h3>Audios</h3>
+        <audio controls>
+            <source src="./audio/ad1.mp3" type="audio/ogg">
+            <source src="./audio//ad2.mp3" type="audio/mpeg">
+            Your browser does not support the audio tag.
+        </audio>
+
+        <h3>Videos</h3>
+        <video width="320" height="240" controls>
+            <!-- autoplay: this will start video and audio when website render -->
+            <source src="./video/ip.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <br />
+
+        <h3>First Canvas design</h3>
+
+        <canvas id="myCanvas" width="200" height="150" style="border:1px solid #d3d3d3;">
+            Your browser does not support the HTML5 canvas tag.</canvas>
+
+        <br>
+        
+        <h3>SVG STYLE</h3>
+        <svg width="100" height="100">
+            <circle cx="50" cy="50" r="40" stroke="red" stroke-width="1" fill="yellow" />
+        </svg>
+
+    </center>
+</body>
+
+
+<script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.fillStyle = "#FF0000";
+    ctx.fillRect(10, 10, 150, 100);
+</script>F
+
+</html>

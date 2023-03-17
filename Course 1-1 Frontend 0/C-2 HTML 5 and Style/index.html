@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .borderStyle {
+            border: 1px solid red;
+            text-align: right;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        .imageSize {
+            height: 400px;
+            width: 400px;
+        }
+
+        .tableStyle {
+            border: 2px solid greenyellow;
+            border-radius: 30px;
+        }
+
+        .tableStyle th {
+            border-bottom: 5px solid #dddddd;
+        }
+
+        .tableStyle td {
+            border-left: 3px solid grey;
+            border-right: 3px solid grey;
+        }
+
+        .centerClass {
+           /* position: center; */
+        }
+
+        /* .trStyle {
+            border-bottom: 2px dashed darkcyan;
+        } */
+    </style>
+</head>
+
+<body style="background-color: silver;">
+    <main>
+        <!-- navbar section -->
+        <nav style="background-color: black; color: white; border: 5px dashed red; text-align: center;">This is nav
+        </nav>
+        <!-- header section body section -->
+        <section style="border: 2px solid blue; text-align: center; background-color: aqua;">
+            <img src="./images//women.jpg" alt="women.jpg">
+        </section>
+        <!-- body section 2 -->
+        <section style="text-align:center; background-color: cadetblue;">
+            <div style="border: 2px solid red;">
+                <img class="imageSize" src="./images//ed.jpg" alt="" srcset="">
+                <p class="borderStyle">This is image one</p>
+                <p class="borderStyle">This is image one</p>
+                <p class="borderStyle">This is image one</p>
+                <p class="borderStyle">This is image one</p>
+            </div>
+            <div style="border: 2px solid red">
+                <img class="imageSize" src="./images//ed.jpg" alt="" srcset="">
+                <p class="borderStyle">This is image two</p>
+                <p class="borderStyle">This is image two</p>
+                <p class="borderStyle">This is image two</p>
+            </div>
+        </section>
+        <!-- table section -->
+        <section class="centerClass">
+            <!-- <center> Not good way -->
+            <table class="tableStyle">
+                <tr>
+                    <th>Company</th>
+                    <th>Contact</th>
+                    <th>Country</th>
+                </tr>
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>Maria Anders</td>
+                    <td>Germany</td>
+                </tr>
+                <tr>
+                    <td>Centro comercial Moctezuma</td>
+                    <td>Francisco Chang</td>
+                    <td>Mexico</td>
+                </tr>
+                <tr>
+                    <td>Ernst Handel</td>
+                    <td>Roland Mendel</td>
+                    <td>Austria</td>
+                </tr>
+                <tr>
+                    <td>Island Trading</td>
+                    <td>Helen Bennett</td>
+                    <td>UK</td>
+                </tr>
+                <tr>
+                    <td>Laughing Bacchus Winecellars</td>
+                    <td>Yoshi Tannamuri</td>
+                    <td>Canada</td>
+                </tr>
+                <tr>
+                    <td>Magazzini Alimentari Riuniti</td>
+                    <td>Giovanni Rovelli</td>
+                    <td>Italy</td>
+                </tr>
+            </table>
+            <!-- </center> -->
+        </section>
+        <!-- form section -->
+        <section>
+
+            <form action="/action_page.php">
+                <label for="fname">First name:</label><br>
+                <input type="text" id="fname" name="fname" value="John"><br>
+                <label for="lname">Last name:</label><br>
+                <input type="text" id="lname" name="lname" value="Doe"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+
+            <p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
+        </section>
+
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+body {
+    /* background-color: red; */
+    width: 100%;
+    /* height: 100%; */
+}
+
+.link-section {
+    /* border: 5px solid burlywood; */
+    /* height: 100px; */
+    width: 100%;
+    margin: 10px 0px;
+}
+
+.link-section > a {
+    margin-top: 10px;
+    background-color: cornsilk;
+    text-decoration: none;
+    font-size: 36px;
+    color: coral;
+    border: 2px dashed rgb(3, 46, 235);
+    padding: 0px 50px;
+}
+
+.link-section>a:hover {
+    background-color: rgb(24, 63, 235);
+    text-decoration: none;
+    border: 2px solid rgb(235, 3, 3);
+    color: azure;
+}
+
+.image-section {
+    margin-top: 200px;
+    /* border: 5px solid tomato; */
+}
+
+/* units in css */
+/* .image-section>img {
+    height: 500px;
+    width: 500px;
+    border: 2px solid tomato;
+} */
+
+.image-section > .picture1 {
+    width: 500px;
+    height: 500px;
+    border: 10px solid gray;
+}
+
+.image-section > .picture2 {
+    width: 10%;
+    height: 250px;
+    border: 10px solid green;
+}
+
+.image-section > .picture3 {
+    width: 30rem;
+    height: 500px;
+    border: 10px solid tomato;
+}

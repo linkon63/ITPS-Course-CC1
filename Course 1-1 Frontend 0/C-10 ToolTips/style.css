@@ -1,0 +1,43 @@
+.button {
+    background-color: burlywood;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: cornsilk;
+}
+
+.button span {
+    visibility: hidden;
+}
+
+.button:hover span {
+    visibility: visible;
+    color: brown;
+    transition: width 2s, height 4s;
+}
+
+.hoverMe {
+    width: 50px;
+    height: 50px;
+    background: red;
+    transition: width 2s, height 2;
+    /* transition: width 2s, height 2s, transform 2s; */
+    animation-name: example;
+    animation-duration: 5s;
+}
+
+.hoverMe:hover {
+    width: 100px;
+    height: 100px;
+    /* transform: rotate(180deg); */
+}
+
+@keyframes example {
+    0%   {background-color: red;}
+    25%  {background-color: yellow;}
+    50%  {background-color: blue;}
+    75%  {background-color: rgb(31, 94, 18);}
+    100% {background-color: green;}
+  }

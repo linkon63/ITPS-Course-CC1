@@ -1,0 +1,19 @@
+PS E:\T Course\TCourse> git add .
+PS E:\T Course\TCourse> git commit -m"class 3 added"
+[main edf2b12] class 3 added
+ 4 files changed, 54 insertions(+)
+ create mode 100644 C- 4 Media and HTML 5/audio/ad1.mp3
+ create mode 100644 C- 4 Media and HTML 5/audio/ad2.mp3
+ create mode 100644 C- 4 Media and HTML 5/index.html
+ create mode 100644 C- 4 Media and HTML 5/video/ip.mp4
+PS E:\T Course\TCourse> git push
+Enumerating objects: 10, done.
+Counting objects: 100% (10/10), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (9/9), 8.92 MiB | 196.00 KiB/s, done.
+Total 9 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/linkon63/TCourse.git
+   e1251c7..edf2b12  main -> main
+PS E:\T Course\TCourse>

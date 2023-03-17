@@ -106,7 +106,7 @@
 //         ** discrete mathematics
 //         proposition
 //         conditions
-//         pigions hole theory
+//         pigeons hole theory
 //         statement
 //         recursion 
 //         logic building 

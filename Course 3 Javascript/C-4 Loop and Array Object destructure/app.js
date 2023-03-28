@@ -60,14 +60,17 @@ var arr = [1, 2, 3] // single dimensional array
 
 
 /*
-    home task 1: you have an array of 10 values and you have to find values from array
+    home task 1 : 
+    you have an array of 10 values and you have to find values from array
     arr = [17, 20, 33, 46, 45, 64, 7.0, 87, 96, 107]
     if there is 96 print yes and if there is no 96 print no
 
-    home task 2: you have an array of 10 values and you
-                 have to (+add) all the numbers of this array and print the total number using while loop
+    home task 2 : 
+    you have an array of 10 values and you
+    have to (+add) all the numbers of this array and print the total number using while loop.
 
-    home task 3: you have to dec: 2d array like
+    home task 3 : 
+    you have to dec: 2d array like
     arr = [[1, 10, 20], [50, 20, 60, 40, 30], [6, 3, 5], [200, 600]]
     find there is 200 in this array using for loop and you have to find the index number
     note : floor number and room num
@@ -92,7 +95,7 @@ var arr = [1, 2, 3] // single dimensional array
 // // ds method 1
 // console.log("ds method 1: ", person2.name)
 
-// const { name, age } = person3
+// var { name, age } = person3
 
 // console.log("ds method 2 : ", name, age)
 

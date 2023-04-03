@@ -1,0 +1,10 @@
+body {
+    height: 100vh;
+}
+
+ul li {
+    border: 1px solid red;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}

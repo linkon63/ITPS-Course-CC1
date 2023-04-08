@@ -19,6 +19,13 @@ window.addEventListener('load', () => {
         e.preventDefault(); // stop reload
 
         const taskValue = input.value
+        // step 0 : check there is value or not -> corner case
+        if (input.value == '') {
+            console.log("Empty text")
+            return 0;
+        }
+
+
         // console.log("Form Submit value : ", taskValue)
 
         // Step 1 :  Input Box
@@ -84,8 +91,6 @@ window.addEventListener('load', () => {
             list_el.removeChild(task_el)
         })
 
-
     })
-
 
 })

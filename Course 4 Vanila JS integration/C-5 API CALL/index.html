@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Weather</title>
+    <style>
+        body {
+            background: url('./bg-image.jpg');
+            background-size: cover;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container pt-5">
+        <form class="d-flex" id="weatherForm">
+            <input id="locationInput" type="text" class="form-control" placeholder="Your Location">
+            <input id="submitFormBtn" type="submit" class="btn btn-info">
+        </form>
+        <div class="text-white text-center" id="dataSection">
+            <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="">
+            <h1 id="locationName" class="">Dhaka</h1>
+            <h3 id="tempareture">38.05 &deg C</h3>
+            <h1 id="tStatus">Sunny</h1>
+        </div>
+    </div>
+</body>
+
+<script>
+    // API info : 
+    // API : 4c0174b10931e93aa8e3aa499a666d4e
+    // https://api.openweathermap.org/data/2.5/weather?q=dhaka&appid=4c0174b10931e93aa8e3aa499a666d4e
+
+    document.getElementById('weatherForm').addEventListener('submit', (e) => {
+        e.preventDefault()
+        let inputValue = document.getElementById('locationInput').value
+        if (inputValue) {
+            console.log("Submit Input : ", inputValue)
+
+            // calling data by apis using fetch
+            fetch(`https://api.openweathermap.org/data/2.5/weather?q=${inputValue}&appid=4c0174b10931e93aa8e3aa499a666d4e`)
+                .then(response => response.json())
+                .then(data => {
+                    // console.log("Data is coming : ", data)
+                    // console.log("Description from API :", description)
+                    const name = data.name
+                    const description = data.weather[0].description  /// array 1 means length but it start from 0
+                    const kelTemp = data.main.temp_max
+
+                    const celsius = () => {
+                        const kelvin = ((kelTemp - 273.15) * 1.8) + 32
+                        return kelvin
+                    }
+
+                    console.log("celsius", celsius())
+                    document.getElementById('locationName').innerText = name
+                    document.getElementById('tempareture').innerText = `${celsius().toFixed(1)} C`
+                    // document.getElementById('tempareture').innerText = `${Math.floor(celsius())} C`
+                    document.getElementById('tStatus').innerText = description
+
+                    document.getElementById('locationInput').value = ""
+                })
+        }
+
+    })
+
+    // Convert temp function
+    // function fToC(fahrenheit) {
+    //     var fTemp = fahrenheit;
+    //     var fToCel = (fTemp - 32) * 5 / 9;
+    //     var message = fTemp + '\xB0F is ' + fToCel + '\xB0C.';
+    //     console.log(message);
+    // }
+
+</script>
+
+</html>

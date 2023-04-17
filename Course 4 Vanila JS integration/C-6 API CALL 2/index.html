@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API EXPLORE</title>
+</head>
+
+<body>
+    <div>
+        <h1>API EXPLORE</h1>
+        <div id="users-show">
+            <h1>There user will show</h1>
+        </div>
+    </div>
+
+    <script>
+        console.log("Im API Explore");
+
+        const showUsers = document.getElementById("users-show")
+
+
+
+        function getUsers() {
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(json => {
+                    console.log("Response users : ", json)
+
+                    for (let i = 0; i < json.length; i++) {
+                        const singleUser = json[i];
+                        console.log("Single user : ", singleUser)
+                        const name = document.createElement('h1')
+                        name.innerText = singleUser.name
+                        showUsers.appendChild(name)
+                    }
+
+                })
+                .catch((error) => {
+                    console.log("error", error)
+                })
+        }
+        function getPhotos() {
+            fetch('https://jsonplaceholder.typicode.com/photos')
+                .then(response => response.json())
+                .then(json => console.log("Response Photos :", json))
+                .catch((error) => {
+                    console.log("error", error)
+                })
+        }
+        getUsers()
+        // getPhotos()
+        /*
+        
+        # Resturent ->
+
+        1. Front end -> Customer(request)
+        2. API -> waiter (req vehical)
+        3. Backend -> Restuarent chief ( There is data or there is no data )
+
+            Food Order -> 
+                Request( Are there beff staak / Chawmin ) -> (..waiter..) -> (I promise i will back to you)
+                <- Response <- Yes We have food <- We have no food
+
+
+                1. Get request send
+                2. Response Back (either true(data back), (No data))
+
+        ------------------------------------------------------
+        fetch data ->
+ API LINK : // https://jsonplaceholder.typicode.com/users
+        */
+
+
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+
+1 . create a react file
+2 . Style homepage using components
+    rules : 
+        1 a :Name should start with capital string
+        2 b :Must be a functions
+
+
+Img :  https://elements-cover-images-0.imgix.net/1869919e-6ff7-4f33-9684-e9aa13aacf78?auto=compress%2Cformat&fit=max&w=900&s=8ef37871cd62217a17935a68d37f94c8

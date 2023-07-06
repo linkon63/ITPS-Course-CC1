@@ -24,7 +24,7 @@
 # Routing -> Most important things 
 
 10. Lifting State Up - not done
-5. State and Lifecycle - not done
+5.  State and Lifecycle - not done
 12. Thinking In React -> not done
 
 

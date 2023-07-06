@@ -1,0 +1,46 @@
+{
+  "blogs": [
+    {
+      "id": 1,
+      "title": "The Art of Cooking",
+      "author": "Jane Smith",
+      "date": "2023-06-15",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar nunc sit amet justo efficitur, in gravida nunc dapibus. Integer eu justo eget urna euismod condimentum. Sed ullamcorper ante nec pulvinar dignissim. Phasellus finibus metus vitae felis posuere, vitae eleifend mi sollicitudin. Etiam consequat arcu ut fringilla congue. Donec finibus dolor id velit suscipit, et malesuada tortor euismod. Suspendisse accumsan ligula quis fermentum euismod.",
+      "tags": ["cooking", "food", "recipes"]
+    },
+    {
+      "id": 2,
+      "title": "The Benefits of Regular Exercise",
+      "author": "John Doe",
+      "date": "2023-06-20",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar nunc sit amet justo efficitur, in gravida nunc dapibus. Integer eu justo eget urna euismod condimentum. Sed ullamcorper ante nec pulvinar dignissim. Phasellus finibus metus vitae felis posuere, vitae eleifend mi sollicitudin. Etiam consequat arcu ut fringilla congue. Donec finibus dolor id velit suscipit, et malesuada tortor euismod. Suspendisse accumsan ligula quis fermentum euismod.",
+      "tags": ["exercise", "fitness", "health"]
+    },
+    {
+      "id": 3,
+      "title": "Beginner's Guide to Investing",
+      "author": "David Carter",
+      "date": "2023-06-18",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod nibh a mauris interdum, eu scelerisque ipsum iaculis. Sed efficitur enim quis turpis commodo, nec efficitur mauris maximus. Nullam vel mauris magna. Mauris dapibus eleifend velit, eu lacinia sapien cursus ut. Sed id purus vitae ipsum aliquam facilisis.",
+      "tags": ["investing", "finance", "money"]
+    },
+    {
+      "id": 4,
+      "title": "10 Tips for Effective Time Management",
+      "author": "Emily Wilson",
+      "date": "2023-06-12",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod nibh a mauris interdum, eu scelerisque ipsum iaculis. Sed efficitur enim quis turpis commodo, nec efficitur mauris maximus. Nullam vel mauris magna. Mauris dapibus eleifend velit, eu lacinia sapien cursus ut. Sed id purus vitae ipsum aliquam facilisis.",
+      "tags": ["time management", "productivity", "self-improvement"]
+    },
+    {
+      "id": 5,
+      "title": "Exploring the World of Artificial Intelligence",
+      "author": "Daniel Anderson",
+      "date": "2023-06-05",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin euismod nibh a mauris interdum, eu scelerisque ipsum iaculis. Sed efficitur enim quis turpis commodo, nec efficitur mauris maximus. Nullam vel mauris magna. Mauris dapibus eleifend velit, eu lacinia sapien cursus ut. Sed id purus vitae ipsum aliquam facilisis.",
+      "tags": ["time management", "productivity", "self-improvement"]
+    }
+  ],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" }
+}

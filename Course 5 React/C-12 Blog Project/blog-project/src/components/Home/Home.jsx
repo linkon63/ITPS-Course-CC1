@@ -1,4 +1,4 @@
-import Navbar from "../Shared/Navbar";
+import Navbar from "../shared/Navbar";
 import HomeAcordion from "./HomeAcordion";
 import HomeCarousel from "./HomeCarousel";
 

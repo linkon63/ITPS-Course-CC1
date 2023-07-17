@@ -1,5 +1,5 @@
-import HomeAcordion from "../Home/HomeAcordion";
-import Navbar from "../Shared/Navbar";
+import HomeAcordion from "../home/HomeAcordion";
+import Navbar from "../shared/Navbar";
 
 export default function AllBlog() {
   return (

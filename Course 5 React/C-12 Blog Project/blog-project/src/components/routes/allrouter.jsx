@@ -1,8 +1,9 @@
-import AllBlog from "../AllBlog/AllBlog";
-import Home from "../Home/Home";
-import SingleBlog from "../SingleBlog/SingleBlog";
+import AllBlog from "../allBlog/AllBlog";
+import Login from "../auth/login/Login";
+import Home from "../home/Home";
+import SingleBlog from "../singleBlog/SingleBlog";
 
-export const allrouter = [
+export const Allrouter = [
   {
     path: "/",
     element: <Home />,
@@ -26,5 +27,9 @@ export const allrouter = [
   {
     path: "/contact",
     element: <div>Hello contact!</div>,
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ];

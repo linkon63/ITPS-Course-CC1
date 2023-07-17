@@ -46,6 +46,11 @@ export default function Navbar() {
                 Contact
               </Link>
             </li>
+            <li className="nav-item text-right">
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

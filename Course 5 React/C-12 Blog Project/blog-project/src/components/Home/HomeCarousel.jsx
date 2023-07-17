@@ -1,3 +1,6 @@
+import img1 from "../../lib/images/download (1).jpg";
+import img2 from "../../lib/images/download.png";
+import img3 from "../../lib/images/images (2).jpg";
 export default function HomeCarousel() {
   return (
     <div className="">
@@ -32,7 +35,7 @@ export default function HomeCarousel() {
           <div className="carousel-item active">
             <img
               style={{ width: "100%", height: "400px" }}
-              src="https://img.freepik.com/premium-vector/breaking-news-planet-background_213860-743.jpg"
+              src={img1}
               className="d-block"
               alt="..."
             />
@@ -40,7 +43,7 @@ export default function HomeCarousel() {
           <div className="carousel-item">
             <img
               style={{ width: "100%", height: "400px" }}
-              src="https://img.freepik.com/premium-vector/breaking-news-template-design_23-2148502088.jpg"
+              src={img2}
               className="d-block"
               alt="..."
             />
@@ -48,7 +51,7 @@ export default function HomeCarousel() {
           <div className="carousel-item">
             <img
               style={{ width: "100%", height: "400px" }}
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbXELJIG-RPJ2usEijf_wIi_dk_LhZHBqrSC0iSwA0wi2aPQ0-SWq_4lLLkuXbsT8CZD8&usqp=CAU"
+              src={img3}
               className="d-block"
               alt="..."
             />

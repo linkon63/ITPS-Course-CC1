@@ -1,5 +1,6 @@
 import AllBlog from "../allBlog/AllBlog";
 import Login from "../auth/login/Login";
+import Registration from "../auth/registration/Registration";
 import Home from "../home/Home";
 import SingleBlog from "../singleBlog/SingleBlog";
 
@@ -31,5 +32,9 @@ export const Allrouter = [
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/registration",
+    element: <Registration />,
   },
 ];

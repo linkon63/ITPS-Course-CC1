@@ -1,5 +1,11 @@
+import { Link } from "react-router-dom";
 import Navbar from "../../shared/Navbar";
 import { useForm } from "react-hook-form";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signInWithEmailLink,
+} from "firebase/auth";
 export default function Login() {
   const {
     register,
@@ -7,143 +13,113 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  // react hook form / formik 
+  // react hook form / formik
   // state
   // inside function state update
 
   // validation easy here
 
+  const onSubmit = (data) => {
+    console.log("Create account data new checking: ", data);
+
+    try {
+      console.log("🔥🔥🔥🔥");
+      const auth = getAuth();
+      console.log("====================================");
+      console.log("⭐⭐⭐⭐", auth);
+      console.log("====================================");
+      // if (isSignInWithEmailLink(auth, window.location.href)) {
+      console.log("❌❌❌");
+      // The client SDK will parse the code from the link for you.
+      signInWithEmailAndPassword(auth, data.userName, data.password)
+        .then((result) => {
+          console.log("result", result);
+          alert("you are sign in");
+          // Clear email from storage.
+          // window.localStorage.removeItem("emailForSignIn");
+          // You can access the new user via result.user
+          // Additional user info profile not available via:
+          // result.additionalUserInfo.profile == null
+          // You can check if the user is new or existing:
+          // result.additionalUserInfo.isNewUser
+        })
+        .catch((error) => {
+          alert("not sign in");
+          console.log("error", error);
+          // Some error occurred, you can inspect the code: error.code
+          // Common errors could be invalid email and invalid or expired OTPs.
+        });
+      // }
+    } catch (error) {
+      console.log("====================================");
+      console.log("🚨🚨", error);
+      console.log("====================================");
+    }
+  };
+
   return (
     <>
       <Navbar />
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
-        <label htmlFor="">fName</label>
-        <input {...register("firstName")} />
-        <label htmlFor="">lName</label>
-        <input {...register("lastName", { required: true })} />
-        {errors.lastName && <p>Last name is required.</p>}
-        <label htmlFor="">age</label>
-        <input {...register("age", { pattern: /\d+/ })} />
-        {errors.age && <p>Please enter number for age.</p>}
-        <input type="submit" />
-      </form>
-      {/* <section className="vh-100">
-        <div className="container-fluid h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <div className="col-md-9 col-lg-6 col-xl-5">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                className="img-fluid"
-                alt="Sample image"
-              />
-            </div>
-            <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-              <form>
-                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-                  <p className="lead fw-normal mb-0 me-3">Sign in with</p>
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  >
-                    <i className="fab fa-facebook-f"></i>
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  >
-                    <i className="fab fa-twitter"></i>
-                  </button>
-
-                  <button
-                    type="button"
-                    className="btn btn-primary btn-floating mx-1"
-                  >
-                    <i className="fab fa-linkedin-in"></i>
-                  </button>
-                </div>
-
-                <div className="divider d-flex align-items-center my-4">
-                  <p className="text-center fw-bold mx-3 mb-0">Or</p>
-                </div>
-
-                <div className="form-outline mb-4">
-                  <input
-                    type="email"
-                    id="form3Example3"
-                    className="form-control form-control-lg"
-                    placeholder="Enter a valid email address"
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 offset-md-3">
+            <h2 className="text-center text-dark mt-5">Login in your blog</h2>
+            <div className="card my-5">
+              <form
+                className="card-body cardbody-color p-lg-5"
+                onSubmit={handleSubmit(onSubmit)}
+              >
+                <div className="text-center">
+                  <img
+                    src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+                    className="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                    width="200px"
+                    alt="profile"
                   />
-                  <label className="form-label" for="form3Example3">
-                    Email address
-                  </label>
                 </div>
 
-                <div className="form-outline mb-3">
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="UserName"
+                    aria-describedby="emailHelp"
+                    placeholder="User Name"
+                    {...register("userName", { required: true })}
+                  />
+                </div>
+                <div className="mb-3">
                   <input
                     type="password"
-                    id="form3Example4"
-                    className="form-control form-control-lg"
-                    placeholder="Enter password"
+                    className="form-control"
+                    id="password"
+                    placeholder="password"
+                    {...register("password", { required: true })}
                   />
-                  <label className="form-label" for="form3Example4">
-                    Password
-                  </label>
                 </div>
-
-                <div className="d-flex justify-content-between align-items-center">
-                  <div className="form-check mb-0">
-                    <input
-                      className="form-check-input me-2"
-                      type="checkbox"
-                      value=""
-                      id="form2Example3"
-                    />
-                    <label className="form-check-label" for="form2Example3">
-                      Remember me
-                    </label>
-                  </div>
-                  <a href="#!" className="text-body">
-                    Forgot password?
-                  </a>
-                </div>
-
-                <div className="text-center text-lg-start mt-4 pt-2">
-                  <button type="button" className="btn btn-primary btn-lg">
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    className="btn btn-success px-5 mb-5 w-100"
+                  >
                     Login
                   </button>
-                  <p className="small fw-bold mt-2 pt-1 mb-0">
-                    Don't have an account?{" "}
-                    <a href="#!" className="link-danger">
-                      Register
-                    </a>
-                  </p>
+                </div>
+                <div
+                  id="emailHelp"
+                  className="form-text text-center mb-5 text-dark"
+                >
+                  Not Registered?{" "}
+                  <Link to="/registration" className="text-dark fw-bold">
+                    {" "}
+                    Create an Account
+                  </Link>
                 </div>
               </form>
             </div>
           </div>
         </div>
-        <div className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-          <div className="text-white mb-3 mb-md-0">
-            Copyright © 2020. All rights reserved.
-          </div>
-
-          <div>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-facebook-f"></i>
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-twitter"></i>
-            </a>
-            <a href="#!" className="text-white me-4">
-              <i className="fab fa-google"></i>
-            </a>
-            <a href="#!" className="text-white">
-              <i className="fab fa-linkedin-in"></i>
-            </a>
-          </div>
-        </div>
-      </section> */}
+      </div>
     </>
   );
 }

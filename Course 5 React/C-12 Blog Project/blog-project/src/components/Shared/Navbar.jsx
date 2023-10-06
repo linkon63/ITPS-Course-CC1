@@ -1,7 +1,30 @@
-import React from "react";
+import { getAuth, signOut } from "firebase/auth";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const [userLogin, setUserLogin] = useState(false);
+
+  useEffect(() => {
+    const userEmail = sessionStorage.getItem("email");
+    console.log("user session storage mail", userEmail);
+    userEmail && setUserLogin(true);
+  }, [userLogin]);
+
+  const logout = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+        alert("Sign-out successful.");
+        sessionStorage.removeItem("email");
+        window.location.reload();
+      })
+      .catch((error) => {
+        // An error happened.
+        console.error(error);
+      });
+  };
   return (
     <nav
       className="navbar navbar-expand-lg bg-dark border-bottom border-bottom-dark "
@@ -47,9 +70,15 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item text-right">
-              <Link className="nav-link" to="/login">
-                Login
-              </Link>
+              {userLogin ? (
+                <Link className="nav-link" onClick={logout}>
+                  Logout
+                </Link>
+              ) : (
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>

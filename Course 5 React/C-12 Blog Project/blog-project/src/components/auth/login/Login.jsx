@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../shared/Navbar";
 import { useForm } from "react-hook-form";
 import {
@@ -6,60 +6,76 @@ import {
   signInWithEmailAndPassword,
   signInWithEmailLink,
 } from "firebase/auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { db } from "../firebase/Auth.config";
+import { useState } from "react";
 export default function Login() {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [loading, setLoading] = useState(false);
 
-  // react hook form / formik
-  // state
-  // inside function state update
+  const navigate = useNavigate();
 
-  // validation easy here
-
-  const onSubmit = (data) => {
-    console.log("Create account data new checking: ", data);
-
+  const onSubmit = async (data) => {
+    setLoading(true);
     try {
-      console.log("🔥🔥🔥🔥");
-      const auth = getAuth();
-      console.log("====================================");
-      console.log("⭐⭐⭐⭐", auth);
-      console.log("====================================");
-      // if (isSignInWithEmailLink(auth, window.location.href)) {
-      console.log("❌❌❌");
-      // The client SDK will parse the code from the link for you.
-      signInWithEmailAndPassword(auth, data.userName, data.password)
-        .then((result) => {
-          console.log("result", result);
-          alert("you are sign in");
-          // Clear email from storage.
-          // window.localStorage.removeItem("emailForSignIn");
-          // You can access the new user via result.user
-          // Additional user info profile not available via:
-          // result.additionalUserInfo.profile == null
-          // You can check if the user is new or existing:
-          // result.additionalUserInfo.isNewUser
-        })
-        .catch((error) => {
-          alert("not sign in");
-          console.log("error", error);
-          // Some error occurred, you can inspect the code: error.code
-          // Common errors could be invalid email and invalid or expired OTPs.
-        });
-      // }
+      console.log("Create account data new checking: ", data);
+      // 1 : this email is already in database/fireStore or not
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", data.userName)
+      );
+      const querySnapshot = await getDocs(q);
+      let flag = 0;
+      querySnapshot.forEach((doc) => {
+        flag = 1;
+        console.log(doc.id, " => ", doc.data());
+      });
+
+      if (flag === 1) {
+        // if exist in db/fireStore then login auth in firebase
+        try {
+          console.log("🔥🔥🔥🔥");
+          const auth = getAuth();
+          signInWithEmailAndPassword(auth, data.userName, data.password)
+            .then((result) => {
+              console.log("result", result);
+              // alert("you are sign in");
+              sessionStorage.setItem("email", data.userName);
+              setLoading(false);
+              navigate("/home");
+            })
+            .catch((error) => {
+              alert("not sign in");
+              console.log("error", error);
+            });
+          // }
+        } catch (error) {
+          console.error("error", error);
+          setLoading(false);
+        }
+      } else {
+        navigate("/registration");
+      }
     } catch (error) {
-      console.log("====================================");
-      console.log("🚨🚨", error);
-      console.log("====================================");
+      console.error(error);
+      setLoading(false);
     }
   };
 
   return (
     <>
       <Navbar />
+      {loading && (
+        <div className="d-flex justify-content-center pt-2">
+          <div className="spinner-border text-center" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
       <div className="container">
         <div className="row">
           <div className="col-md-6 offset-md-3">

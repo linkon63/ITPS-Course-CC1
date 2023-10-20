@@ -1,16 +1,52 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductArray } from "../../App";
 export default function Header() {
+  // state
   const [selectedProduct, setSelectedProduct] = useContext(ProductArray);
   const [visibleModal, setVisibleModal] = useState(false);
-  const removeFromCart = (id) => {
-    console.log("id", id);
-    const filterItem = selectedProduct.filter((prd) => prd.ID !== id);
-    console.log("====================================");
-    console.log(filterItem);
-    console.log("====================================");
+
+  const [amount, setAmount] = useState({
+    amount: 0,
+    discount: 0,
+    totalAmount: 0,
+  });
+
+  // useeffect
+  useEffect(() => {
+    let amount = 0;
+    let discountAmount = 0;
+    let totalAmount = 0;
+    if (selectedProduct && selectedProduct.length > 0) {
+      for (let i = 0; i < selectedProduct.length; i++) {
+        const singleProduct = selectedProduct[i];
+        amount += singleProduct.Price;
+        if (singleProduct.discount) {
+          discountAmount += singleProduct.discount;
+        }
+      }
+    }
+    totalAmount = amount - discountAmount;
+    setAmount({
+      amount: amount,
+      discount: discountAmount,
+      totalAmount: totalAmount,
+    });
+  }, [selectedProduct]);
+
+  // normal function
+  const removeFromCart = (id, index) => {
+    const filterItem = [];
+    for (let i = 0; i < selectedProduct.length; i++) {
+      const prd = selectedProduct[i];
+      if (prd.ID == id && i == index) {
+        continue;
+      } else {
+        filterItem.push(prd);
+      }
+    }
     setSelectedProduct(filterItem);
   };
+
   return (
     <header className="p-4 dark:bg-gray-800 dark:text-gray-100">
       <div className="container flex justify-between h-16 mx-auto">
@@ -84,7 +120,7 @@ export default function Header() {
             </h2>
             <ul className="flex flex-col divide-y divide-gray-700">
               {selectedProduct.length > 0 ? (
-                selectedProduct.map((prd) => (
+                selectedProduct.map((prd, index) => (
                   <div key={prd.ID}>
                     <li className="flex flex-col py-6 sm:flex-row sm:justify-between">
                       <div className="flex w-full space-x-2 sm:space-x-4">
@@ -110,7 +146,11 @@ export default function Header() {
                                 .99€
                               </p>
                               <p className="text-sm line-through dark:text-gray-600">
-                                75.50€
+                                {prd?.discount ? (
+                                  <span>{prd?.discount}.99€</span>
+                                ) : (
+                                  <span></span>
+                                )}
                               </p>
                             </div>
                           </div>
@@ -118,7 +158,7 @@ export default function Header() {
                             <button
                               type="button"
                               className="flex items-center px-2 py-1 pl-0 space-x-1"
-                              onClick={() => removeFromCart(prd.ID)}
+                              onClick={() => removeFromCart(prd.ID, index)}
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -173,8 +213,16 @@ export default function Header() {
             </ul>
             <div className="space-y-1 text-right">
               <p>
+                Amount :
+                <span className="font-semibold"> {amount.amount} €</span>
+              </p>
+              <p>
+                Discount :
+                <span className="font-semibold">{amount.discount} €</span>
+              </p>
+              <p>
                 Total amount:
-                <span className="font-semibold">357 €</span>
+                <span className="font-semibold">{amount.totalAmount} €</span>
               </p>
               <p className="text-sm dark:text-gray-400">
                 Not including taxes and shipping costs

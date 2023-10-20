@@ -27,7 +27,11 @@ export default function ProductCard({ product }) {
               <div className="text-right">
                 <p className="text-lg font-semibold">{product?.Price}.99€</p>
                 <p className="text-sm line-through dark:text-gray-600">
-                  75.50€
+                  {product?.discount ? (
+                    <span>{product?.discount}.99€</span>
+                  ) : (
+                    <span></span>
+                  )}
                 </p>
               </div>
             </div>

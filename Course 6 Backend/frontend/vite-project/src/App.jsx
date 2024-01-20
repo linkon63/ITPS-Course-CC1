@@ -22,6 +22,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         console.log("res", data);
+        setUsers(data.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -32,10 +33,8 @@ function App() {
     fetch("http://localhost:8080/users")
       .then((res) => res.json())
       .then((data) => {
-        console.log("users", data);
-        setTimeout(() => {
-          setUsers(data);
-        }, 2000);
+        console.log("users", data.reverse());
+        setUsers(data.reverse());
       })
       .catch((err) => console.error("", err));
   }, []);
@@ -53,10 +52,12 @@ function App() {
         <input type="submit" className="btn btn-success m-2" />
       </form>
 
-      {users.length > 0 ? (
-        <div>
+      {users && users.length > 0 ? (
+        <div className="border">
           {users.map((user, i) => (
-            <p key={i}>{user.name}</p>
+            <p key={i} className="border p-2 border-primary">
+              {user.name}
+            </p>
           ))}
         </div>
       ) : (

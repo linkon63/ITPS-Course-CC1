@@ -2,6 +2,7 @@ const express = require('express')
 const cors = require('cors')
 var bodyParser = require('body-parser')
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const { ObjectId } = require('mongodb'); // or ObjectID 
 const uri = "mongodb+srv://user:passwordcc1@cluster0.uzrx08v.mongodb.net/?retryWrites=true&w=majority";
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -44,15 +45,35 @@ async function run() {
             res.send('Your backend is working ...')
         })
 
-        app.get('/users', (req, res) => {
+        app.get('/users', async (req, res) => {
             console.log('users data are trying to access')
+            const allUsers = await collectionUser.find().toArray();
+            res.json(allUsers);
+        })
+
+        app.get('/recipes', async (req, res) => {
+            console.log('users data are trying to access')
+            const allRecipes = await collection.find().toArray();
+            res.json(allRecipes);
         })
 
         app.get('/posts', (req, res) => {
         })
 
-        app.post('/create-user', jsonParser, (req, res) => {
+        app.post('/create-user', jsonParser, async (req, res) => {
             console.log('req', req.body)
+            await collectionUser.insertOne(req.body);
+            const allUsers = await collectionUser.find().toArray();
+            res.json(allUsers);
+        })
+
+        app.get('/users/:id', async (req, res) => {
+            console.log('req', req.params.id)
+            // console.log('req', req.query)
+
+            const user = await collectionUser.findOne({ _id: new ObjectId(req.params.id) });
+            console.log('user', user);
+            res.json(user);
         })
 
         app.post('/create-many-recipes', jsonParser, async (req, res) => {

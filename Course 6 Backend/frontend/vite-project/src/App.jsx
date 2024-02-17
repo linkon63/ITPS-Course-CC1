@@ -38,6 +38,27 @@ function App() {
       })
       .catch((err) => console.error("", err));
   }, []);
+
+  const deleteUser = (user) => {
+    console.log("deleteUser", user._id);
+    fetch(`http://localhost:8080/users/${user._id}`, {
+      method: "DELETE",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data.reverse());
+      })
+      .catch((err) => console.error("error", err));
+
+    // fetch("http://localhost:8080/users")
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   console.log("users", data.reverse());
+    //   setUsers(data.reverse());
+    // })
+    // .catch((err) => console.error("", err));
+  };
+
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)} className="border bg-info">
@@ -57,6 +78,7 @@ function App() {
           {users.map((user, i) => (
             <p key={i} className="border p-2 border-primary">
               {user.name}
+              <button onClick={() => deleteUser(user)}>Delete</button>
             </p>
           ))}
         </div>

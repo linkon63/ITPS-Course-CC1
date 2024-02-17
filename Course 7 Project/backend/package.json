@@ -1,0 +1,19 @@
+{
+  "name": "e-com-server",
+  "version": "1.0.0",
+  "description": "e-com server side code are there",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "linkon63",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "mongodb": "^6.3.0",
+    "nodemon": "^3.0.3"
+  }
+}

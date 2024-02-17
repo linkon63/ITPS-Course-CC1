@@ -69,11 +69,18 @@ async function run() {
 
         app.get('/users/:id', async (req, res) => {
             console.log('req', req.params.id)
-            // console.log('req', req.query)
+            // console.log('req', req.query ?name="adad"&age=15")
 
             const user = await collectionUser.findOne({ _id: new ObjectId(req.params.id) });
             console.log('user', user);
             res.json(user);
+        })
+
+        app.delete('/users/:id', async (req, res) => {
+            console.log('req', req.params.id)
+            await collectionUser.deleteOne({ _id: new ObjectId(req.params.id) });
+            const allUsers = await collectionUser.find().toArray();
+            res.json(allUsers);
         })
 
         app.post('/create-many-recipes', jsonParser, async (req, res) => {

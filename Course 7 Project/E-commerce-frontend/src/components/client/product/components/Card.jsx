@@ -1,16 +1,30 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { StateContext } from "../../../../App";
 
 export default function Card({ product }) {
   let navigate = useNavigate();
+  const [stateData, setStateData] = useContext(StateContext);
 
+  // add to the cart functionality
   const addToCart = (product) => {
     const email = sessionStorage.getItem("email");
     if (email) {
-      console.log("Future product will add in cart :", product);
+      // console.log("Future product will add in cart :", product);
+      if (stateData.products) {
+        console.log("there is product");
+        const allProduct = [...stateData.products];
+        allProduct.push(product);
+        setStateData({ ...stateData, products: [...allProduct] });
+      } else {
+        console.log("there is no product");
+        setStateData({ products: [product] });
+      }
     } else {
       alert("Please Login first to cart this product !!");
       navigate("/login");
     }
+    console.log("product added", stateData);
   };
   return (
     <div>
@@ -78,12 +92,12 @@ export default function Card({ product }) {
               </svg>
             </div>
             <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-            {product?.rating}
+              {product?.rating}
             </span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-            {product?.price}
+              {product?.price}
             </span>
             <button
               onClick={() => addToCart(product)}

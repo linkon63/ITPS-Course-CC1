@@ -45,6 +45,7 @@ async function run() {
     });
     // users registration
     app.post("/users", jsonParser, async (req, res) => {
+      console.log('data', req.body)
       const userCollection = await db.collection("users")
       await userCollection.insertOne(req.body);
       res.json({ users: req.body, status: 'ok', code: 200 });
@@ -55,6 +56,17 @@ async function run() {
       const userCollection = await db.collection("users")
       const users = await userCollection.findOne({ "_id": new ObjectId(id) });
       res.json({ users: users, status: 'ok', code: 200 });
+    });
+
+    app.post("/users/validation", jsonParser, async (req, res) => {
+      const data = req.body
+      const userCollection = await db.collection("users")
+      const users = await userCollection.findOne({ "email": data.email, "password": data.password });
+      if (users) {
+        res.json({ users: users, status: 'ok', code: 200 });
+      } else {
+        res.json({ users: [], status: 'failure', code: 404 });
+      }
     });
 
     app.delete("/users/:id", async (req, res) => {

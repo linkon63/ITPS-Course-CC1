@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Card from "./components/Card";
+import Card from "./Card";
 
 export default function ProductsSection() {
-
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getProducts();

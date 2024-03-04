@@ -1,16 +1,33 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { StateContext } from "../../../../App";
 
 export default function Card({ product }) {
   let navigate = useNavigate();
+  const [stateData, setStateData] = useContext(StateContext);
 
-  const addToCart = (product) => {
+  // remove to the cart functionality
+  const removeToCart = (product) => {
     const email = sessionStorage.getItem("email");
     if (email) {
-      console.log("Future product will add in cart :", product);
+      // console.log("Future product will add in cart :", product);
+      if (stateData.products) {
+        console.log("there is product");
+        const allProduct = [...stateData.products];
+        const filterProducts = allProduct.filter(
+          (fnProduct) => fnProduct._id !== product._id
+        );
+        console.log("filter products", filterProducts);
+        setStateData({ ...stateData, products: [...filterProducts] });
+      } else {
+        console.log("there is no product");
+        setStateData({ products: [product] });
+      }
     } else {
       alert("Please Login first to cart this product !!");
       navigate("/login");
     }
+    console.log("product remove from cart", stateData);
   };
   return (
     <div>
@@ -78,18 +95,34 @@ export default function Card({ product }) {
               </svg>
             </div>
             <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">
-            {product?.rating}
+              {product?.rating}
             </span>
           </div>
           <div className="flex items-center justify-between">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
-            {product?.price}
+              {product?.price}
             </span>
+
             <button
-              onClick={() => addToCart(product)}
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={() => removeToCart(product)}
+              className="flex items-center text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Add to cart
+              <svg
+                className="w-6 text-white dark:text-white "
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18 18 6m0 12L6 6"
+                />
+              </svg>
+              Remove
             </button>
           </div>
         </div>

@@ -10,6 +10,7 @@
     "preview": "vite preview --port 8080"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.6.0",
     "firebase": "^10.8.0",
     "flowbite-react": "^0.7.2",
     "react": "^18.2.0",

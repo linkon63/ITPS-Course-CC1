@@ -1,20 +1,31 @@
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { StateContext } from "../../../App";
 export default function Navbar() {
   const [stateData, setStateData] = useContext(StateContext);
   const [productCount, setProductsCount] = useState(0);
-  const userLogOut = () => {
-    sessionStorage.removeItem("email");
-    window.location.reload();
-  };
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     console.log("state data from navbar", stateData);
     if (stateData.products) {
       setProductsCount(stateData.products.length);
+      sessionStorage.setItem(
+        "cartProducts",
+        JSON.stringify(stateData.products)
+      );
     }
   }, [stateData.products]);
+
+  const userLogOut = () => {
+    sessionStorage.removeItem("email");
+    window.location.reload();
+  };
+
+  const navigateToTheCart = () => {
+    navigate("/cart");
+  };
   return (
     <div>
       <header>
@@ -133,6 +144,7 @@ export default function Navbar() {
                   <button
                     type="button"
                     className="relative inline-flex items-center p-2 text-sm font-medium text-center text-white bg-white rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    onClick={() => navigateToTheCart()}
                   >
                     <svg
                       className="w-6 h-4 text-gray-800 dark:text-white"

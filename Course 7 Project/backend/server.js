@@ -57,10 +57,21 @@ async function run() {
       const users = await userCollection.findOne({ "_id": new ObjectId(id) });
       res.json({ users: users, status: 'ok', code: 200 });
     });
-
+    //client validation checking
     app.post("/users/validation", jsonParser, async (req, res) => {
       const data = req.body
       const userCollection = await db.collection("users")
+      const users = await userCollection.findOne({ "email": data.email, "password": data.password });
+      if (users) {
+        res.json({ users: users, status: 'ok', code: 200 });
+      } else {
+        res.json({ users: [], status: 'failure', code: 404 });
+      }
+    });
+    //admin validation checking
+    app.post("/admin/validation", jsonParser, async (req, res) => {
+      const data = req.body
+      const userCollection = await db.collection("admin")
       const users = await userCollection.findOne({ "email": data.email, "password": data.password });
       if (users) {
         res.json({ users: users, status: 'ok', code: 200 });
@@ -104,10 +115,59 @@ async function run() {
     });
 
     // orders crud operations [admin - client]
-    app.get("/orders", async (req, res) => {
+    app.get("/orders/:email", async (req, res) => {
+      const email = req.params.email
+      console.log('email', email)
+
+      // for the client
+      if (email) {
+        try {
+          const orderCollection = await db.collection("orders")
+          const orders = await orderCollection.find({ email: email }).toArray();
+          res.status(200).json({ orders: orders, status: 'ok', message: 'All orders data for the client', code: 200 });
+        } catch (error) {
+          res.send(error)
+        }
+      }
+      // for the admin
+      // const orderCollection = await db.collection("orders")
+      // const orders = await orderCollection.find().toArray();
+      // res.json({ orders: orders, status: 'ok', message: 'All orders data', code: 200 })
+
+    });
+
+    // for the admin all orders showing
+    app.get("/admin/orders/", async (req, res) => {
       const orderCollection = await db.collection("orders")
       const orders = await orderCollection.find().toArray();
       res.json({ orders: orders, status: 'ok', message: 'All orders data', code: 200 })
+
+    });
+
+    // for the admin order Confirmed 
+    app.patch("/admin/order/confirm", jsonParser, async (req, res) => {
+      console.log(req.body._id)
+      const { _id } = req.body
+      const orderCollection = await db.collection("orders")
+      console.log(req.body)
+
+      orderCollection.updateOne({orderId: req.body.orderId}, {
+        $set : {shipment : req.body.shipment}
+      })
+      .then((result) => {
+        console.log('Order confirm',)
+      res.json({ status: 'ok', message: 'Confirmation orders data', code: 200 })
+      })
+
+      // try {
+      //   const newOrderValues = { $set: { ...req.body } };
+      //   await orderCollection.findByIdAndUpdate(req.body._id, req.body, { useFindAndModify: false }).exec();
+      // } catch (error) {
+      //   console.log('Error Try catch',error)
+      // }
+
+      // res.json({ orders: orders, status: 'ok', message: 'All orders data', code: 200 })
+
     });
 
     app.post("/orders", jsonParser, async (req, res) => {

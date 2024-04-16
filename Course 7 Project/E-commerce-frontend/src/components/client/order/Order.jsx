@@ -1,5 +1,6 @@
 import Navbar from "../../shared/navbar/Navbar";
 import Footer from "../../shared/footer/Footer";
+import OrderProducts from "./components/OrderProducts";
 
 export default function Order() {
   return (
@@ -7,7 +8,7 @@ export default function Order() {
       <Navbar />
       <div className="w-full flex justify-center">
         <div className="w-10/12">
-          <h1>Orders section</h1>
+          <OrderProducts />
           <Footer />
         </div>
       </div>

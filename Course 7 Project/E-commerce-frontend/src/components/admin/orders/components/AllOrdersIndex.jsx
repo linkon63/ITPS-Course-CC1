@@ -7,7 +7,9 @@ export default function AllOrdersIndex() {
   }, []);
 
   async function getProducts() {
-    const response = await fetch(`http://localhost:8080/admin/orders`);
+    const response = await fetch(
+      `https://cc-ecom-backend-1.vercel.app/admin/orders`
+    );
     const orderResponseData = await response.json();
     console.log("orderResponseData", orderResponseData);
     if (orderResponseData.orders.length > 0) {
@@ -25,7 +27,7 @@ export default function AllOrdersIndex() {
     };
     console.log("updatedOrder", updatedOrder);
     await postData(
-      "http://localhost:8080/admin/order/confirm",
+      "https://cc-ecom-backend-1.vercel.app/admin/order/confirm",
       updatedOrder
     ).then((response) => {
       //   console.log("response", response);

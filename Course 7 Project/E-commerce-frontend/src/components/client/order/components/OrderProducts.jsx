@@ -8,7 +8,9 @@ export default function OrderProducts() {
 
   async function getProducts() {
     const response = await fetch(
-      `http://localhost:8080/orders/${sessionStorage.getItem("email")}`
+      `https://cc-ecom-backend-1.vercel.app/orders/${sessionStorage.getItem(
+        "email"
+      )}`
     );
     const productResponseData = await response.json();
     console.log("productResponseData", productResponseData);

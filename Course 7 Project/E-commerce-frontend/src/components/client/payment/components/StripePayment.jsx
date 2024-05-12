@@ -15,7 +15,6 @@ const CheckoutForm = ({ userInfo }) => {
   const elements = useElements();
   const [stateData, setStateData] = useContext(StateContext);
 
-
   const [errorMessage, setErrorMessage] = useState(null);
   let navigate = useNavigate();
 
@@ -63,21 +62,22 @@ const CheckoutForm = ({ userInfo }) => {
 
     console.log("Payment Successful 🧑‍💻🧑‍💻🧑‍💻🧑‍💻");
 
-    await postData("http://localhost:8080/orders", orderProducts).then(
-      (response) => {
-        if (response.code == 200) {
-          console.log("Response Data : ", orderProducts);
-          sessionStorage.setItem("email", orderProducts.email);
+    await postData(
+      "https://cc-ecom-backend-1.vercel.app/orders",
+      orderProducts
+    ).then((response) => {
+      if (response.code == 200) {
+        console.log("Response Data : ", orderProducts);
+        sessionStorage.setItem("email", orderProducts.email);
 
-          sessionStorage.removeItem("cartProducts")
-          setStateData({ ...stateData, products: [] });
+        sessionStorage.removeItem("cartProducts");
+        setStateData({ ...stateData, products: [] });
 
-          navigate("/orders");
-        } else {
-          alert("You are not in db You must be valid user");
-        }
+        navigate("/orders");
+      } else {
+        alert("You are not in db You must be valid user");
       }
-    );
+    });
   };
 
   async function postData(url = "", data = {}) {

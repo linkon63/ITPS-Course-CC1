@@ -35,10 +35,12 @@ export default function Signup() {
   };
 
   const saveUserToTheDB = async (data) => {
-    await postData("http://localhost:8080/users", data).then((data) => {
-      console.log("Response Data : ", data);
-      navigate("/login");
-    });
+    await postData("https://cc-ecom-backend-1.vercel.app/users", data).then(
+      (data) => {
+        console.log("Response Data : ", data);
+        navigate("/login");
+      }
+    );
   };
 
   async function postData(url = "", data = {}) {

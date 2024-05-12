@@ -29,17 +29,18 @@ export default function Login() {
   };
 
   const checkingUserInTheDB = async (data) => {
-    await postData("http://localhost:8080/users/validation", data).then(
-      (response) => {
-        if(response.code == 200){
-            console.log("Response Data : ", data);
-            sessionStorage.setItem("email", data.email);
-            navigate("/home");
-        }else{
-            alert("You are not in db You must be valid user")
-        }
+    await postData(
+      "https://cc-ecom-backend-1.vercel.app/users/validation",
+      data
+    ).then((response) => {
+      if (response.code == 200) {
+        console.log("Response Data : ", data);
+        sessionStorage.setItem("email", data.email);
+        navigate("/home");
+      } else {
+        alert("You are not in db You must be valid user");
       }
-    );
+    });
   };
 
   async function postData(url = "", data = {}) {

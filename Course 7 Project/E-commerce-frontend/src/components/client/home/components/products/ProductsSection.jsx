@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import Card from "./components/Card";
 
 export default function ProductsSection() {
-
   const [products, setProducts] = useState([]);
   useEffect(() => {
     getProducts();
   }, []);
 
   async function getProducts() {
-    const response = await fetch("http://localhost:8080/products/");
+    const response = await fetch(
+      "https://cc-ecom-backend-1.vercel.app/products/"
+    );
     const productResponseData = await response.json();
     console.log("productResponseData", productResponseData.products);
     if (productResponseData.products.length > 0) {

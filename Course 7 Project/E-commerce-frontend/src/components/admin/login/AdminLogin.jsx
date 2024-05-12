@@ -17,17 +17,18 @@ export default function AdminLogin() {
   };
 
   const checkingUserInTheDB = async (data) => {
-    await postData("http://localhost:8080/admin/validation", data).then(
-      (response) => {
-        if (response.code == 200) {
-          console.log("Response Data : ", data);
-          sessionStorage.setItem("email", data.email);
-          navigate("/dashboard");
-        } else {
-          alert("You are not in db You must be valid administrator");
-        }
+    await postData(
+      "https://cc-ecom-backend-1.vercel.app/admin/validation",
+      data
+    ).then((response) => {
+      if (response.code == 200) {
+        console.log("Response Data : ", data);
+        sessionStorage.setItem("email", data.email);
+        navigate("/dashboard");
+      } else {
+        alert("You are not in db You must be valid administrator");
       }
-    );
+    });
   };
 
   async function postData(url = "", data = {}) {

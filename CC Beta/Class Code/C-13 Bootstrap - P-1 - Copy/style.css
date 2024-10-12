@@ -1,0 +1,17 @@
+body {
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.customHeight {
+    height: 100vh;
+}
+
+.navSty {
+    background-color: #57B588;
+}
+
+.profilePicture >  img{
+    height: 106px;
+    width: 106px;
+}

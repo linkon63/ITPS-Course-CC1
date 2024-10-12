@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Weather Status in BD",
+  "description": "That is the status of the weather in Dhaka Bangladesh",
+  "version": "1.0.0",
+  "author": "devKon",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Weather Status in Dhaka"
+  }
+}
